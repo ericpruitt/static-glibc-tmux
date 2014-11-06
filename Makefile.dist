@@ -1,0 +1,21 @@
+# Author: Eric Pruitt (http://www.codevat.com)
+# License: 2-Clause BSD (http://opensource.org/licenses/BSD-2-Clause)
+# Description: This Makefile is for installing and uninstalling a symlink to
+#       launch tmux. A simple wrapper script is used to make it possible to
+#       display the tmux man page by running `tmux man` or `tmux help`.
+
+# Folder in $PATH where symlinks to the executables are placed.
+BINDIR=$(HOME)/bin
+
+install:
+	@if [ -e $(BINDIR)/tmux ] && ! [ -h $(BINDIR)/tmux ]; then \
+		echo 'Cannot replace $(BINDIR)/tmux: not a symlink' >&2; \
+		exit 1; \
+	fi
+	@chmod +x tmux.sh tmux
+	@ln -f -s "$$PWD/tmux.sh" $(BINDIR)/tmux && echo '- $(BINDIR)/tmux'
+
+uninstall:
+	@if [ -h $(BINDIR)/tmux ]; then \
+		rm $(BINDIR)/tmux && echo '- $(BINDIR)/tmux'; \
+	fi

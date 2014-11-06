@@ -1,0 +1,37 @@
+--- libevent-2.0.21-stable/evutil.c	2012-07-25 12:58:34.000000000 -0700
++++ libevent-2.0.21-stable/evutil.c	2014-09-06 19:35:07.309668301 -0700
+@@ -753,7 +753,7 @@
+ 		return "sctp";
+ #endif
+ 	default:
+-#ifdef _EVENT_HAVE_GETPROTOBYNUMBER
++#if 0
+ 		{
+ 			struct protoent *ent = getprotobynumber(proto);
+ 			if (ent)
+@@ -922,7 +922,7 @@
+ 	return EVUTIL_EAI_NEED_RESOLVE;
+ }
+ 
+-#ifdef _EVENT_HAVE_GETADDRINFO
++#if 0
+ #define USE_NATIVE_GETADDRINFO
+ #endif
+ 
+@@ -1321,7 +1321,6 @@
+ #else
+ 		/* fall back to gethostbyname. */
+ 		/* XXXX This needs a lock everywhere but Windows. */
+-		ent = gethostbyname(nodename);
+ #ifdef WIN32
+ 		err = WSAGetLastError();
+ #else
+@@ -1377,7 +1377,7 @@
+ void
+ evutil_freeaddrinfo(struct evutil_addrinfo *ai)
+ {
+-#ifdef _EVENT_HAVE_GETADDRINFO
++#if 0
+ 	if (!(ai->ai_flags & EVUTIL_AI_LIBEVENT_ALLOCATED)) {
+ 		freeaddrinfo(ai);
+ 		return;

@@ -1,0 +1,50 @@
+diff --git a/cmd-string.c b/cmd-string.c
+index e793ea0..f22d85c 100644
+--- a/cmd-string.c
++++ b/cmd-string.c
+@@ -328,8 +328,6 @@ cmd_string_expand_tilde(const char *s, size_t *p)
+ 		envent = environ_find(&global_environ, "HOME");
+ 		if (envent != NULL && *envent->value != '\0')
+ 			home = envent->value;
+-		else if ((pw = getpwuid(getuid())) != NULL)
+-			home = pw->pw_dir;
+ 	} else {
+ 		cmd_string_ungetc(p);
+ 
+@@ -342,8 +340,6 @@ cmd_string_expand_tilde(const char *s, size_t *p)
+ 		}
+ 		*cp = '\0';
+ 
+-		if ((pw = getpwnam(user)) != NULL)
+-			home = pw->pw_dir;
+ 		free(user);
+ 	}
+ 
+diff --git a/tmux.c b/tmux.c
+index 631e850..d6a33a6 100644
+--- a/tmux.c
++++ b/tmux.c
+@@ -88,10 +88,6 @@ getshell(void)
+ 	if (checkshell(shell))
+ 		return (shell);
+ 
+-	pw = getpwuid(getuid());
+-	if (pw != NULL && checkshell(pw->pw_shell))
+-		return (pw->pw_shell);
+-
+ 	return (_PATH_BSHELL);
+ }
+
+@@ -328,11 +326,7 @@ main(int argc, char **argv)
+ 	if (cfg_file == NULL) {
+ 		home = getenv("HOME");
+-		if (home == NULL || *home == '\0') {
++		if (home && *home == '\0') {
+-			pw = getpwuid(getuid());
+-			if (pw != NULL)
+-				home = pw->pw_dir;
+-			else
+				home = NULL;
+ 		}
+ 		if (home != NULL) {
+ 			xasprintf(&cfg_file, "%s/.tmux.conf", home);
