@@ -13,7 +13,7 @@ DISTEXTENSION=bz2
 # URL of the libevent tarball
 LIBEVENT_TARBALL_URL=https://github.com/downloads/libevent/libevent/libevent-2.0.21-stable.tar.gz
 # Git repository URL for tmux
-TMUX_GIT_REPOSITORY_URL=git://git.code.sf.net/p/tmux/tmux-code
+TMUX_GIT_REPOSITORY_URL=https://github.com/tmux/tmux.git
 # Basename of the compressed archive
 DISTTARGET=tmux.$(DISTEXTENSION)
 # Determines whether or not `make` is automatically executed inside $INSTALLDIR
