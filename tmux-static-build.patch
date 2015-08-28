@@ -21,7 +21,7 @@ index e793ea0..f22d85c 100644
  	}
  
 diff --git a/tmux.c b/tmux.c
-index 631e850..d6a33a6 100644
+index 61c95af..fd50c80 100644
 --- a/tmux.c
 +++ b/tmux.c
 @@ -88,10 +88,6 @@ getshell(void)
@@ -34,17 +34,17 @@ index 631e850..d6a33a6 100644
 -
  	return (_PATH_BSHELL);
  }
-
-@@ -328,11 +326,7 @@ main(int argc, char **argv)
- 	if (cfg_file == NULL) {
- 		home = getenv("HOME");
--		if (home == NULL || *home == '\0') {
-+		if (home && *home == '\0') {
--			pw = getpwuid(getuid());
--			if (pw != NULL)
--				home = pw->pw_dir;
--			else
-				home = NULL;
- 		}
- 		if (home != NULL) {
- 			xasprintf(&cfg_file, "%s/.tmux.conf", home);
+ 
+@@ -207,11 +203,7 @@ find_home(void)
+ 	const char	*home;
+ 
+ 	home = getenv("HOME");
+-	if (home == NULL || *home == '\0') {
+-		pw = getpwuid(getuid());
+-		if (pw != NULL)
+-			home = pw->pw_dir;
+-		else
++	if (home && *home == '\0') {
+ 			home = NULL;
+ 	}
+ 
