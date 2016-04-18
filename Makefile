@@ -8,7 +8,7 @@ INSTALLDIR=$(HOME)/tmux
 # Folder in $PATH where symlinks to the executables are placed.
 BINDIR=$(HOME)/bin
 # Extension to use when creating a compressed, distributable archive.
-DISTEXTENSION=bz2
+DISTEXTENSION=tar.bz2
 
 # URL of the libevent tarball
 LIBEVENT_TARBALL_URL=https://github.com/downloads/libevent/libevent/libevent-2.0.21-stable.tar.gz
