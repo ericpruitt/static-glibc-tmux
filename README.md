@@ -45,8 +45,8 @@ Makefile include:
   run `make install`. By default, symlinks to the executable will be placed in
   `~/bin/`. To install the symlinks in another directory, override the Makefile
   variable `BINDIR`: `make BINDIR=/usr/local/bin install`. By default, this
-  produces a bz2 archive. Override the `DISTEXTENSION` to change this, e.g.,
-  `make dist DISTEXTENSION=tgz`.
+  produces a tar.bz2 archive. Override the `DISTEXTENSION` to change this,
+  e.g., `make dist DISTEXTENSION=tar.xz`.
 - **update**: Update the local copy of the tmux source code if it is out of
   sync with the official repository, and implicitly execute the **clean**
   target. If the local copy of tmux is already up-to-date, this will fail with
