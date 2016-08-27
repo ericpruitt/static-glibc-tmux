@@ -81,6 +81,9 @@ tmux-src/tmux: tmux-src/Makefile
 	fi
 	cd tmux-src && $(MAKE)
 
+tmux.vim: $(wildcard tmux-src/*.c) | tmux-src
+	./generate-vim-syntax.sh
+
 clean-tmux:
 	@if [ -e tmux-src ]; then \
 		set -e; \
