@@ -36,7 +36,7 @@ syn region tmuxString start=+"+ skip=+\\\\\|\\"\|\\$+ excludenl end=+"+ end='$' 
 syn region tmuxString start=+'+ skip=+\\\\\|\\'\|\\$+ excludenl end=+'+ end='$' contains=tmuxFormatString
 
 " TODO: Figure out how escaping works inside of #(...) and #{...} blocks.
-syn region tmuxFormatString start=/##/ end=// contained keepend
+syn region tmuxFormatString start=/#[#DFhHIPSTW]/ end=// contained keepend
 syn region tmuxFormatString start=/#{/ skip=/#{.\{-}}/ end=/}/ contained keepend
 syn region tmuxFormatString start=/#(/ skip=/#(.\{-})/ end=/)/ contained keepend
 
