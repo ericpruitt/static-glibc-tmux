@@ -55,12 +55,10 @@ hi def link tmuxVariable          Identifier
 hi def link tmuxVariableExpansion Identifier
 
 for i in range(0, 255)
-    let s:realColor = i
-    if s:realColor == 0 || s:realColor == 16 || s:realColor == 232 ||
-\     s:realColor == 233 || s:realColor == 233 || s:realColor == 234
-        exec "highlight tmuxColour" . i . " ctermfg=" . s:realColor . " ctermbg=15"
+    if i == 0 || i == 16 || i == 232 || i == 233 || i == 233 || i == 234
+        exec "highlight tmuxColour" . i . " ctermfg=" . i . " ctermbg=15"
     else
-        exec "highlight tmuxColour" . i . " ctermfg=" . s:realColor
+        exec "highlight tmuxColour" . i . " ctermfg=" . i
     endif
     exec "syn match tmuxColour" . i . " /\\<colour" . i . "\\>/ display"
 endfor
