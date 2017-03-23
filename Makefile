@@ -44,7 +44,10 @@ libevent/build: libevent/Makefile
 	cd libevent && $(MAKE) install
 
 tmux-src:
-	git clone $(TMUX_GIT_REPOSITORY_URL) $@
+	git clone $(TMUX_GIT_REPOSITORY_URL) $@; \
+	cd $@; \
+	git fetch origin --tags; \
+	git checkout 1.9a; \
 
 update: tmux-src
 	@set -e; \
